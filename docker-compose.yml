@@ -1,0 +1,23 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb
+    ports:
+    - "8086:8086"
+    volumes:
+    - influxdb-volume:/var/lib/influxdb
+    environment:
+      INFLUXDB_ADMIN_USER: "${DB_USER}"
+      INFLUXDB_ADMIN_PASSWORD: "${DB_PASS}"
+  mongodb:
+    image: mongo
+    ports:
+    - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${DB_USER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_PASS}"
+    volumes:
+    - mongodb-volume:/data/db
+volumes:
+  influxdb-volume: {}
+  mongodb-volume: {}
