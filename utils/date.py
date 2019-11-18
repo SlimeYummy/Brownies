@@ -12,20 +12,24 @@ def str_to_date(text: str) -> D.date:
 
 
 def str_to_date_ex(text: str) -> D.date:
+    if not text:
+        return None
     return D.datetime.strptime(text, '%Y%m%d').date()
 
 
 def date_to_str(day: D.date) -> str:
-    return day.strftime('%Y%m%d')
+    if not day:
+        return ''
+    try:
+        return day.strftime('%Y%m%d')
+    except:
+        return ''
 
 
 def date_to_str_ex(day: D.date) -> str:
     if not day:
-        return None
-    try:
-        return day.strftime('%Y%m%d')
-    except:
-        return None
+        return ''
+    return day.strftime('%Y%m%d')
 
 
 def date_delta(a: T.Any, b: T.Any) -> D.timedelta:
